@@ -13,4 +13,8 @@ Gem::Specification.new do |gem|
   gem.name          = "nanosearch"
   gem.require_paths = ["lib"]
   gem.version       = Nanosearch::VERSION
+
+  gem.add_dependency(%q<pg>, ["~> 0.11.0"])
+  gem.add_dependency(%q<sinatra>, ["~> 1.3.1"])
+    
 end

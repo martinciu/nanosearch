@@ -1,5 +1,3 @@
 require "nanosearch/version"
+require "nanosearch/server"
 
-module Nanosearch
-  # Your code goes here...
-end
