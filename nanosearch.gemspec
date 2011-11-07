@@ -5,6 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Marcin Ciunelis"]
   gem.email         = ["marcin.ciunelis@gmail.com"]
   gem.description   = %q{Simple self-hosted RESTfull search engine}
+  gem.summary       = "The goal is to build simple RESTful services that can be deployed to heroku to provide full text search for your other applications. It will use DB backends such as PostgreSQL, Redis, MongoDB."
   gem.homepage      = "https://github.com/martinciu/nanosearch"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
