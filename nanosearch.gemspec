@@ -15,8 +15,13 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Nanosearch::VERSION
 
-  gem.add_dependency("pg", ["~> 0.11.0"])
-  gem.add_dependency("sinatra", ["~> 1.3.1"])
-  gem.add_dependency("json", ["~> 1.6.1"])
+  gem.add_dependency "pg", "~> 0.11.0"
+  gem.add_dependency "sinatra", "~> 1.3.1"
+  gem.add_dependency "json", "~> 1.6.1"
+
+  gem.add_development_dependency "rake", "~> 0.9.2"
+  gem.add_development_dependency "minitest", "~> 2.7.0"
+  gem.add_development_dependency "rack-test", "~> 0.6"
+  gem.add_development_dependency "turn", "~> 0.8.3"
 
 end
