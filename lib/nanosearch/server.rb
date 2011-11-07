@@ -26,8 +26,8 @@ module Nanosearch
       end
     end
 
-    get '/_indexes' do
-      render_json indexer.indexes
+    get '/' do
+      render_json :indexes => indexer.indexes
     end
 
     get '/:index' do
