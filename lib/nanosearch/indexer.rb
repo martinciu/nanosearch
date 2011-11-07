@@ -8,14 +8,12 @@ module Nanosearch
     attr_accessor :connection
 
     def initialize
-      config = Nanosearch::Server.settings.db
-      @connection = PGconn.open(
-        :host => config['host'], 
-        :dbname => config['database'], 
-        :user => config['username'],
-        :port => config['port'],
-        :password => config['password']
-      )
+      db = Nanosearch::Server.settings.db
+      config = {:host => db.host, :dbname => db.path[1..-1]}
+      config.merge!(:user => db.user) if db.user
+      config.merge!(:password => db.password) if db.password
+
+      @connection = PGconn.open(config)
     end
 
     def indexes

@@ -3,10 +3,11 @@ require 'bundler'
 
 Bundler.require
 
+require 'uri'
 require 'nanosearch'
 
 Nanosearch::Server.configure do |config|
-  config.set :db, YAML::load(File.open("config/database.yml"))[ENV['RACK_ENV']]
+  config.set :db, URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/nanosearch_development')
 end
 
 run Nanosearch::Server
