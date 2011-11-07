@@ -1,9 +1,10 @@
 require 'pg'
 require 'yaml'
+require 'singleton'
 
 module Nanosearch
   class Indexer
-    include ::Singleton
+    include Singleton
     attr_accessor :connection
 
     def initialize
