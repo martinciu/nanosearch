@@ -3,7 +3,7 @@ require 'yaml'
 
 module Nanosearch
   class Indexer
-    include Singleton
+    include ::Singleton
     attr_accessor :connection
 
     def initialize
