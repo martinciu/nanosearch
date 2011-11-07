@@ -1,6 +1,7 @@
 require 'pg'
 require 'yaml'
 require 'singleton'
+require 'uri'
 
 module Nanosearch
   class Indexer
@@ -8,12 +9,7 @@ module Nanosearch
     attr_accessor :connection
 
     def initialize
-      db = Nanosearch::Server.settings.db
-      config = {:host => db.host, :dbname => db.path[1..-1]}
-      config.merge!(:user => db.user) if db.user
-      config.merge!(:password => db.password) if db.password
-
-      @connection = PGconn.open(config)
+      @connection = PGconn.open(db_config)
     end
 
     def indexes
@@ -43,5 +39,14 @@ module Nanosearch
     def search(index, query)
       @connection.exec("SELECT doc_id FROM #{index} where ts_vector @@ plainto_tsquery('#{query}')").map {|r| r['doc_id']}
     end
+
+    private
+      def db_config
+        uri = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/nanosearch_development')
+        config = {:host => uri.host, :dbname => uri.path[1..-1]}
+        config.merge!(:user => uri.user) if uri.user
+        config.merge!(:password => uri.password) if uri.password
+        config
+      end
   end
 end
