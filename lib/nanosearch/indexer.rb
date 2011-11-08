@@ -9,7 +9,7 @@ module Nanosearch
     attr_accessor :connection
 
     def initialize
-      @connection = PGconn.open(db_config)
+      @connection = PGconn.open(Nanosearch.config[:db])
     end
 
     def indexes
@@ -40,13 +40,6 @@ module Nanosearch
       @connection.exec("SELECT doc_id FROM #{index} where ts_vector @@ plainto_tsquery('#{query}')").map {|r| r['doc_id']}
     end
 
-    private
-      def db_config
-        uri = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/nanosearch_development')
-        config = {:host => uri.host, :dbname => uri.path[1..-1]}
-        config.merge!(:user => uri.user) if uri.user
-        config.merge!(:password => uri.password) if uri.password
-        config
-      end
+    
   end
 end

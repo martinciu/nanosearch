@@ -1,5 +1,5 @@
+require "nanosearch/config"
 require "nanosearch/version"
-require "nanosearch/server"
 require "nanosearch/indexer"
-
+require "nanosearch/server"
 
