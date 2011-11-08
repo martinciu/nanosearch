@@ -23,5 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "minitest", "~> 2.7.0"
   gem.add_development_dependency "rack-test", "~> 0.6"
   gem.add_development_dependency "turn", "~> 0.8.3"
+  gem.add_development_dependency "mocha", "~> 0.10.0"
+
 
 end

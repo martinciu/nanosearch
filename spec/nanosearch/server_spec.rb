@@ -3,13 +3,19 @@ require 'spec_helper'
 describe Nanosearch::Server do
   include Rack::Test::Methods
 
+  before do
+    @indexer = mock()
+    Nanosearch::Indexer.stubs(:instance).returns(@indexer)
+  end
+
   def app
     @app ||= Nanosearch::Server
   end
 
-  it "should respond to '/'" do
+  it "should return list of indexes " do
     get '/'
-    last_response.ok?.must_equal true
+    @indexer.expects(:indexes).once
+    # @indexer.verify
   end
 
 end
